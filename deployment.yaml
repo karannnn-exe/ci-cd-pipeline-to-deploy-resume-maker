@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: karan
+  
+spec:
+  replicas: 2
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+       maxSurge: 1
+       maxUnavailable: 1
+  selector:
+    matchLabels:
+      app: cloudknowledges
+  template:
+    metadata:
+      labels:
+        app: cloudknowledges
+    spec:
+      containers:
+      - name: cloudknowledges
+        image: karannnn98/kubernetesproject
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 80
+
